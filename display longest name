@@ -1,0 +1,23 @@
+#python solution:-
+    	# code here
+        	largest=0
+        	for i in names :
+        	    if largest<=len(i):
+        	        name=i
+        	        largest = len(i)
+        	return name  
+
+
+
+
+  
+//c++ solution :-
+   int name = 0;
+    for(int i=0 ; i<n;i++){
+        if(names[i].size()> names[name].size()){
+            name = i ;
+        }
+        
+    }
+    
+    return names[name];
