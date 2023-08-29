@@ -1,0 +1,4 @@
+explination : 
+the user gives the system a list of names as an input 
+after the system recives that list of names the code goes through the list comparing each name's length
+with another to look for the longest name in the list then return that name to the user
