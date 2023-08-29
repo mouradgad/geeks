@@ -1,0 +1,13 @@
+arr=[]
+for i in range(len(a)) :
+            
+    if a[i] == key:
+        arr.append(i)
+w = []
+if len(arr) > 0 :
+    w.append(arr[0])
+    w.append(arr[-1])
+if len(arr) == 0:
+    w.append(-1)
+    w.append(-1)
+return w

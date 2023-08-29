@@ -1,0 +1,4 @@
+explination:-
+this problem is about finding the first time and last time the input number occured in the array
+the codes takes an array and a number as an input 
+and returns the first time the number occured in the array and the last time 
