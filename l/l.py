@@ -24,38 +24,38 @@ def calculate_gpa(noOfRecords, records):
     
     
     for i in range(min(5, len(students))):
-        print(f"{students[i][0]},{students[i][1]}")
+        print(f"\033[36m{students[i][0]},{format(students[i][1], '.2f')}\033[0m")
 
 def calculate_gp(final_grade):
     
     if final_grade >= 95:
-        return 4.0
+        return 4.00
     elif final_grade >= 90:
-        return 3.9
+        return 3.90
     elif final_grade >= 85:
-        return 3.8
+        return 3.80
     elif final_grade >= 80:
-        return 3.7
+        return 3.70
     elif final_grade >= 77:
-        return 3.3
+        return 3.30
     elif final_grade >= 73:
-        return 3.0
+        return 3.00
     elif final_grade >= 70:
-        return 2.7
+        return 2.70
     elif final_grade >= 67:
-        return 2.3
+        return 2.30
     elif final_grade >= 63:
-        return 2.0
+        return 2.00
     elif final_grade >= 60:
-        return 1.7
+        return 1.70
     elif final_grade >= 57:
-        return 1.3
+        return 1.30
     elif final_grade >= 53:
-        return 1.0
+        return 1.00
     elif final_grade >= 50:
-        return 0.7
+        return 0.70
     else:
-        return 0.0
+        return 0.00
 
 def sort_students(students):
 
