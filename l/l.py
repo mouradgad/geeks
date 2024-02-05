@@ -9,7 +9,6 @@ def calculate_gpa(noOfRecords, records):
         courses = literal_eval(parts[1])
         grades = literal_eval(parts[2])
         
-      
         total_gp = 0
         for i in range(len(courses)):
             final_grade = sum(grades[i])
@@ -19,15 +18,14 @@ def calculate_gpa(noOfRecords, records):
         overall_gpa = round(total_gp / len(courses), 5)
         students.append((name, overall_gpa))
     
-    
     students = sort_students(students)
     
-    
+    max_name_length = max(len(name) for name, _ in students)  
     for i in range(min(5, len(students))):
-        print(f"\033[36m{students[i][0]},{format(students[i][1], '.2f')}\033[0m")
+        name, gpa = students[i]
+        print(f"\033[32m{f'{name}:':<{max_name_length + 2}}{format(gpa, '.2f')}\033[0m")
 
 def calculate_gp(final_grade):
-    
     if final_grade >= 95:
         return 4.00
     elif final_grade >= 90:
@@ -58,7 +56,6 @@ def calculate_gp(final_grade):
         return 0.00
 
 def sort_students(students):
-
     sorted_students = []
     list_size = len(students)
 
