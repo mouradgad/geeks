@@ -1,30 +1,44 @@
 from ast import literal_eval
 
-def calculate_gpa(noOfRecords, records):
-    students = []
-    
-    for record in records:
-        parts = record.split(',,')
-        name = parts[0]
-        courses = literal_eval(parts[1])
-        grades = literal_eval(parts[2])
-        
-        total_gp = 0
-        for i in range(len(courses)):
-            final_grade = sum(grades[i])
-            gp = calculate_gp(final_grade)
-            total_gp += gp
-        
-        overall_gpa = round(total_gp / len(courses), 5)
-        students.append((name, overall_gpa))
-    
-    students = sort_students(students)
-    
-    max_name_length = max(len(name) for name, _ in students)  
-    for i in range(min(5, len(students))):
-        name, gpa = students[i]
-        print(f"\033[32m{f'{name}:':<{max_name_length + 2}}{format(gpa, '.2f')}\033[0m")
+def apply_grading_criteria(record):
+    parts = record.split(',,')
+    name = parts[0]
+    courses = literal_eval(parts[1])
+    grades = literal_eval(parts[2])
 
+    for i in range(len(courses)):
+        course_name = courses[i]
+        coursework_grade = grades[i][0]
+        exam_grade = grades[i][1]
+
+        if exam_grade == -1:
+            letter_grade = 'INC'
+            final_grade = -1
+        elif coursework_grade < 30 or exam_grade < 20:
+            final_grade = min(45, coursework_grade + exam_grade)
+            letter_grade = 'F'
+        elif coursework_grade < 36 or exam_grade < 24:
+            final_grade = min(58, coursework_grade + exam_grade)
+            letter_grade = get_new_letter_grade(final_grade)
+        else:
+            final_grade = coursework_grade + exam_grade
+            letter_grade = get_new_letter_grade(final_grade)
+
+        print(f"{course_name}: {letter_grade}, {final_grade}")
+
+def get_new_letter_grade(final_grade):
+    if final_grade >= 90:
+        return 'A+'
+    elif final_grade >= 80:
+        return 'A'
+    elif final_grade >= 70:
+        return 'B'
+    elif final_grade >= 60:
+        return 'C'
+    elif final_grade >= 50:
+        return 'D'
+    else:
+        return 'F'
 def calculate_gp(final_grade):
     if final_grade >= 95:
         return 4.00
@@ -71,10 +85,5 @@ def sort_students(students):
     return sorted_students
 
 
-number_of_records = int(input("Enter the number of records: "))
-records = []
-for i in range(number_of_records):
-    record_input = input(f"Enter record {i+1}: ")
-    records.append(record_input)
-
-calculate_gpa(number_of_records, records)
+record = input("Enter the record: ")
+apply_grading_criteria(record)
